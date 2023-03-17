@@ -1,0 +1,56 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+}
+
+.header__left {
+  flex: 0.5;
+  display: flex;
+  background-color: white;
+  padding: 10px;
+  border-radius: 30px;
+  color: gray;
+  align-items: center;
+}
+
+.header__left > input {
+  border: none;
+  width: 100%;
+  outline-width: 0;
+}
+
+.header__right > h4 {
+  margin-left: 10px;
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-button {
+  width: 100px;
+  border: none;
+  outline: none;
+  color: white;
+  text-decoration: none;
+  padding: 5px;
+  margin-right: 20px;
+  border-radius: 99px;
+  font-weight: 800;
+  background-color: #1db954;
+  cursor: pointer;
+}
+
+.header__pagination {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
