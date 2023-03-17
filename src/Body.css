@@ -73,3 +73,13 @@
 .body__infoText > p {
   font-size: 14px;
 }
+
+.body__results {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.body__results__container {
+  width: 350px;
+  height: 100px;
+}

@@ -10,8 +10,27 @@ class Body extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      top_tracks: null,
+      top_tracks: [],
     };
+  }
+
+  componentDidMount() {
+    const token = localStorage.getItem("spotify_token");
+
+    this.props.spotify.setAccessToken(token);
+
+    this.props.spotify
+      .getPlaylistTracks("37i9dQZEVXbMDoHDwVN2tF", { limit: 100 })
+      .then((response) => {
+        this.setState(
+          {
+            top_tracks: response.items.map((item) => item.track),
+          },
+          () => {
+            console.log("top_tracks are fetched", this.state.top_tracks);
+          }
+        );
+      });
   }
 
   playPlaylist = () => {
@@ -44,22 +63,25 @@ class Body extends React.Component {
       });
   };
 
-  componentDidMount() {
-    this.props.spotify
-      .getPlaylistTracks("37i9dQZEVXbMDoHDwVN2tF", { limit: 100 })
-      .then((response) => {
-        this.setState({
-          top_tracks: response.items.map((item) => item.track),
-        });
-      });
-  }
-
   render() {
     const { top_tracks } = this.state;
+    console.log("top_tracks", top_tracks);
 
     return (
       <div className="body">
         <Header spotify={this.props.spotify} />
+        <div className="body__results">
+          {top_tracks.map((track) => (
+            <div className="body__results__container">
+              <SongRow
+                key={track.id}
+                track={track}
+                playSong={this.playSong}
+                dispatch={this.props.dispatch}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     );
   }
